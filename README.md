@@ -2,11 +2,29 @@
 
 ### ASP.NET Core 3.1 WebApi Application
 
-## Возможности
+## Содержание
+- [Personal-Wallet-API](#personal-wallet-api)
+  * [Возможности](#capabilities)
+  * [Базовые структуры](#basic)
+  * [Запросы к API](#request)
+    + [Запросы GET](#requestget)
+      - [Запрос: `GET [URL]/api/users HTTP/1.1`](#requestget-1)
+      - [Запрос: `GET [URL]/api/users/[id] HTTP/1.1`](#requestget-2)
+    + [Запросы POST](#requestpost)
+      - [Запрос: `POST [URL]/api/users/ HTTP/1.1 {UserDto}`](#requestpost-1)
+    + [Запросы PUT](#requestput)
+      - [Запрос: `PUT [URL]/api/users/[id] HTTP/1.1 {UserDto}`](#requestput-1)
+      - [Запрос: `PUT [URL]/api/users/[id]/topup?walletFrom=[wallet from]&value=[value] HTTP/1.1`](#requestput-2)
+      - [Запрос: `PUT [URL]/api/users/[id]/withdraw?walletFrom=[wallet from]&value=[value] HTTP/1.1`](#requestput-3)
+      - [Запрос: `PUT [URL]/api/users/[id]/transfer?walletFrom=[wallet from]&walletTo=[wallet to]&value=[value] HTTP/1.1`](#requestput-4)
+    + [Запросы DELETE](#requestdelete)
+      - [Запрос: `DELETE [URL]/api/users/[id] HTTP/1.1`](#requestdelete-1)
+
+## Возможности <a name="capabilities"></a>
 
 PersonalWalletAPI позволяет добавлять, удалять, обновлять пользователей. Также производить операции пополнения, снятия денег с кошелька пользователя. А также операцию перевода с кошелька пользователя на другой кошелек с получением курса валют с публичного API.
 
-## Базовые структуры
+## Базовые структуры <a name="basic"></a>
 Json шаблон пользователя(класс `UserDto`):
 ```
 {
@@ -21,9 +39,9 @@ Json шаблон пользователя(класс `UserDto`):
 }
 ```
 
-## Запросы к API
-### Запросы GET
-#### Запрос: `GET [URL]/api/users HTTP/1.1`
+## Запросы к API <a name="request"></a>
+### Запросы GET <a name="requestget"></a>
+#### Запрос: `GET [URL]/api/users HTTP/1.1` <a name="requestget-1"></a> <a name="requestget-1"></a>
 Получение всех пользователей в системе. 
 
 Ответ:
@@ -97,7 +115,7 @@ Body:
 ```
 
 ---
-#### Запрос: `GET [URL]/api/users/[id] HTTP/1.1`
+#### Запрос: `GET [URL]/api/users/[id] HTTP/1.1` <a name="requestget-2"></a>
 
 Получение пользователя по `id`.
 
@@ -152,7 +170,9 @@ Body:
 ```
 
 ---
-#### Запрос: `POST [URL]/api/users/ HTTP/1.1 {UserDto}`
+### Запросы POST <a name="requestpost"></a>
+
+#### Запрос: `POST [URL]/api/users/ HTTP/1.1 {UserDto}` <a name="requestpost-1"></a>
 
 Позволяет добавить пользователя в систему, принимает объект UserDto.
 
@@ -236,7 +256,9 @@ Content-Length: 0
 ```
 
 ---
-#### Запрос: `PUT [URL]/api/users/[id]/topup?walletFrom=[wallet from]&value=[value] HTTP/1.1`
+### Запросы PUT <a name="requestput"></a>
+
+#### Запрос: `PUT [URL]/api/users/[id]/topup?walletFrom=[wallet from]&value=[value] HTTP/1.1` <a name="requestput-1"></a>
 
 Пополнение выбранного кошелька пользователя.
 
@@ -256,7 +278,7 @@ Json{UserDto}
 
 #### Пример:
 
-**Запрос:** `PUT https://localhost:5001/api/users/2/topup?walletFrom=rub&value=10`
+**Запрос:** `PUT https://localhost:5001/api/users/2/topup?walletFrom=rub&value=10` <a name="requestput-2"></a>
 
 **Ответ:**
 
@@ -283,7 +305,7 @@ Body:
 ```
 
 ---
-#### Запрос: `PUT [URL]/api/users/[id]/withdraw?walletFrom=[wallet from]&value=[value] HTTP/1.1`
+#### Запрос: `PUT [URL]/api/users/[id]/withdraw?walletFrom=[wallet from]&value=[value] HTTP/1.1` <a name="requestput-3"></a>
 
 Cнятие денег с выбранного кошелька пользователя.
 
@@ -332,7 +354,7 @@ Body:
 Нельзя снять больше денег чем есть на кошельке пользователя.
 
 ---
-#### Запрос: `PUT [URL]/api/users/[id]/transfer?walletFrom=[wallet from]&walletTo=[wallet to]&value=[value] HTTP/1.1`
+#### Запрос: `PUT [URL]/api/users/[id]/transfer?walletFrom=[wallet from]&walletTo=[wallet to]&value=[value] HTTP/1.1` <a name="requestput-4"></a>
 
 Перевод валюты из одного кошелька пользователя в другой. Курс валют берется из публичного API
 
@@ -387,7 +409,9 @@ Body:
 ```
 
 ---
-#### Запрос: `DELETE [URL]/api/users/[id] HTTP/1.1`
+### Запросы DELETE <a name="requestdelete"></a>
+
+#### Запрос: `DELETE [URL]/api/users/[id] HTTP/1.1` <a name="requestdelete-1"></a>
 
 Удаляет пользователя из системы по `id`.
 
