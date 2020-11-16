@@ -1,16 +1,14 @@
-#Personal-Wallet-API
+# Personal-Wallet-API
 
-###ASP.NET Core 3.1 WebApi Application
+### ASP.NET Core 3.1 WebApi Application
 
-##Содержание
-[TOC]
+## Возможности
 
-##Возможности
 PersonalWalletAPI позволяет добавлять, удалять, обновлять пользователей. Также производить операции пополнения, снятия денег с кошелька пользователя. А также операцию перевода с кошелька пользователя на другой кошелек с получением курса валют с публичного API.
 
-##Базовые структуры
+## Базовые структуры
 Json шаблон пользователя(класс `UserDto`):
-```Json
+```
 {
   "userId": [int ID],
   "name": [string name],
@@ -23,9 +21,9 @@ Json шаблон пользователя(класс `UserDto`):
 }
 ```
 
-##Запросы к API
-###Запросы GET
-####Запрос: `GET [URL]/api/users HTTP/1.1`
+## Запросы к API
+### Запросы GET
+#### Запрос: `GET [URL]/api/users HTTP/1.1`
 Получение всех пользователей в системе. 
 
 Ответ:
@@ -42,7 +40,7 @@ body:
 Json[List<UserDto>]
 ```
 
-####Пример:
+#### Пример:
 
 **Запрос:** `GET https://localhost:5001/api/users/ HTTP/1.1`
 
@@ -99,7 +97,7 @@ Body:
 ```
 
 ---
-####Запрос: `GET [URL]/api/users/[id] HTTP/1.1`
+#### Запрос: `GET [URL]/api/users/[id] HTTP/1.1`
 
 Получение пользователя по `id`.
 
@@ -117,7 +115,7 @@ body:
 Json{UserDto}
 ```
 
-####Пример:
+#### Пример:
 
 **Запрос:** `GET https://localhost:5001/api/users/2 HTTP/1.1`
 
@@ -154,7 +152,7 @@ Body:
 ```
 
 ---
-####Запрос: `POST [URL]/api/users/ HTTP/1.1 {UserDto}`
+#### Запрос: `POST [URL]/api/users/ HTTP/1.1 {UserDto}`
 
 Позволяет добавить пользователя в систему, принимает объект UserDto.
 
@@ -167,7 +165,7 @@ Server: Kestrel
 Content-Length: 0
 ```
 
-####Пример:
+#### Пример:
 
 **Запрос:** `POST https://localhost:5001/api/users HTTP/1.1`
 
@@ -196,7 +194,7 @@ Content-Length: 0
 `id` пользователя определяется автоматически.
 
 ---
-####Запрос: `PUT [URL]/api/users/[id] HTTP/1.1 {UserDto}`
+#### Запрос: `PUT [URL]/api/users/[id] HTTP/1.1 {UserDto}`
 
 Позволяет изменять пользователя в системе, принимает объект UserDto.
 
@@ -210,7 +208,7 @@ Server: Kestrel
 Content-Length: 0
 ```
 
-####Пример:
+#### Пример:
 
 **Запрос:** `PUT https://localhost:5001/api/users/2 HTTP/1.1`
 
@@ -238,7 +236,7 @@ Content-Length: 0
 ```
 
 ---
-####Запрос: `PUT [URL]/api/users/[id]/topup?walletFrom=[wallet from]&value=[value] HTTP/1.1`
+#### Запрос: `PUT [URL]/api/users/[id]/topup?walletFrom=[wallet from]&value=[value] HTTP/1.1`
 
 Пополнение выбранного кошелька пользователя.
 
@@ -256,7 +254,7 @@ body:
 Json{UserDto}
 ```
 
-####Пример:
+#### Пример:
 
 **Запрос:** `PUT https://localhost:5001/api/users/2/topup?walletFrom=rub&value=10`
 
@@ -285,7 +283,7 @@ Body:
 ```
 
 ---
-####Запрос: `PUT [URL]/api/users/[id]/withdraw?walletFrom=[wallet from]&value=[value] HTTP/1.1`
+#### Запрос: `PUT [URL]/api/users/[id]/withdraw?walletFrom=[wallet from]&value=[value] HTTP/1.1`
 
 Cнятие денег с выбранного кошелька пользователя.
 
@@ -303,7 +301,7 @@ body:
 Json{UserDto}
 ```
 
-####Пример:
+#### Пример:
 
 **Запрос:** `PUT https://localhost:5001/api/users/2/withdraw?walletFrom=rub&value=50`
 
@@ -334,7 +332,7 @@ Body:
 Нельзя снять больше денег чем есть на кошельке пользователя.
 
 ---
-####Запрос: `PUT [URL]/api/users/[id]/transfer?walletFrom=[wallet from]&walletTo=[wallet to]&value=[value] HTTP/1.1`
+#### Запрос: `PUT [URL]/api/users/[id]/transfer?walletFrom=[wallet from]&walletTo=[wallet to]&value=[value] HTTP/1.1`
 
 Перевод валюты из одного кошелька пользователя в другой. Курс валют берется из публичного API
 
@@ -352,7 +350,7 @@ body:
 Json{UserDto}
 ```
 
-####Пример:
+#### Пример:
 
 **Запрос:** `PUT https://localhost:5001/api/users/3/transfer?walletFrom=rub&walletTo=eur&value=10`
 
@@ -389,7 +387,7 @@ Body:
 ```
 
 ---
-####Запрос: `DELETE [URL]/api/users/[id] HTTP/1.1`
+#### Запрос: `DELETE [URL]/api/users/[id] HTTP/1.1`
 
 Удаляет пользователя из системы по `id`.
 
@@ -402,7 +400,7 @@ Server: Kestrel
 Content-Length: 0
 ```
 
-####Пример:
+#### Пример:
 
 **Запрос:** `DELETE https://localhost:5001/api/users/2 HTTP/1.1`
 
